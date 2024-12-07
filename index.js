@@ -55,9 +55,22 @@ const { io, app, server, getreceiverid } = require('./Socket')
 app.use(cookieParser())
 const cors = require('cors');
 // const Conversation = require('./Conversation_Model')
+const allowedOrigins = [
+    'http://localhost:5173', // Development URL
+    'https://chat-frontend-5alw.vercel.app/' // Production URL
+];
+
 app.use(cors({
-    origin: 'http://localhost:5173', // Frontend origin
-    credentials: true,              // Allow cookies
+    origin: function (origin, callback) {
+        // allow requests with no origin - like mobile apps or curl requests
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) === -1) {
+            const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    },
+    credentials: true
 }));
 
 app.use(express.json())
