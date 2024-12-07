@@ -49,7 +49,7 @@ const port = 1000;
 const jwt = require('jsonwebtoken')
 const cookie = require('cookie-parser')
 const cookieParser = require('cookie-parser')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const { io, app, server, getreceiverid } = require('./Socket')
 
 app.use(cookieParser())
@@ -70,7 +70,7 @@ app.post('/', async (req, res) => {
 
     const user = await User.create(req.body)
     await user.save()
-    res.json({ status: 200, message: 'User Registered' })
+    res.json({ status: 200, message: 'User Registered', success: true })
 })
 //////////
 
