@@ -44,7 +44,7 @@ const mongoose = require('mongoose')
 const express = require('express')
 const User = require('./Model')
 const Message = require('./Message_Model')
-// const Conversation = require('./Conversation_model.js')
+const Conversation = require('./Conversation_model.js')
 const port = 1000;
 const jwt = require('jsonwebtoken')
 const cookie = require('cookie-parser')
@@ -54,7 +54,7 @@ const { io, app, server, getreceiverid } = require('./Socket')
 
 app.use(cookieParser())
 const cors = require('cors');
-const Conversation = require('./Conversation_Model')
+// const Conversation = require('./Conversation_Model')
 app.use(cors({
     origin: 'http://localhost:5173', // Frontend origin
     credentials: true,              // Allow cookies
