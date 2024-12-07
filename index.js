@@ -74,7 +74,7 @@ const cors = require('cors');
 // }));
 app.use(cors({
     origin:
-        "https://chat-frontend-5alw.vercel.app/",
+        "*",
     credentials: true
 }))
 
